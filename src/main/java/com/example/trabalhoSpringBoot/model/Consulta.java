@@ -13,14 +13,14 @@ public class Consulta extends Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date dataDaConsulta;
+    private Integer horaDaConsulta;
 
     private String consulta;
 
-    public Consulta(String nome, String cpf, Long id, Date dataDaConsulta, String consulta) {
+    public Consulta(String nome, String cpf, Long id, Integer horaDaConsulta, String consulta) {
         super(nome, cpf);
         this.id = id;
-        this.dataDaConsulta = dataDaConsulta;
+        this.horaDaConsulta = horaDaConsulta;
         this.consulta = consulta;
     }
 
@@ -34,12 +34,12 @@ public class Consulta extends Paciente {
         this.id = id;
     }
 
-    public Date getDataDaConsulta() {
-        return dataDaConsulta;
+    public Integer getHoraDaConsulta() {
+        return horaDaConsulta;
     }
 
-    public void setDataDaConsulta(Date dataDaConsulta) {
-        this.dataDaConsulta = dataDaConsulta;
+    public void setHoraDaConsulta(Integer horaDaConsulta) {
+        this.horaDaConsulta = horaDaConsulta;
     }
 
     public String getConsulta() {
