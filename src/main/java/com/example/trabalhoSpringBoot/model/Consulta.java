@@ -17,8 +17,8 @@ public class Consulta extends Paciente {
 
     private String consulta;
 
-    public Consulta(String nome, String cpf, Long id, Integer horaDaConsulta, String consulta) {
-        super(nome, cpf);
+    public Consulta(String nome, String cpf, Long id, Integer horaDaConsulta, Integer idade, String consulta) {
+        super(nome, cpf, idade);
         this.id = id;
         this.horaDaConsulta = horaDaConsulta;
         this.consulta = consulta;

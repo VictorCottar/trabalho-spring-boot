@@ -14,12 +14,15 @@ public class Paciente {
     @NotNull
     private String cpf;
 
+    private Integer idade;
+
     public Paciente() {
     }
 
-    public Paciente(String nome, String cpf) {
+    public Paciente(String nome, String cpf, Integer idade) {
         this.nome = nome;
         this.cpf = cpf;
+        this.idade = idade;
     }
 
 
@@ -37,6 +40,14 @@ public class Paciente {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public Integer getIdade() {
+        return idade;
+    }
+
+    public void setIdade(Integer idade) {
+        this.idade = idade;
     }
 
     public Long getId() {
