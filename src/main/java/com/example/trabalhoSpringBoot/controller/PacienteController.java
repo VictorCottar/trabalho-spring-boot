@@ -50,6 +50,7 @@ public class PacienteController {
         return pacienteService.quantidadeDePacientes();
     }
 
+    //corrigir esta função.
     @GetMapping("/busca-por-id/{id}")
     public Optional<Paciente> buscaPorId(Long id) {
         return pacienteService.buscaPorId(id);
