@@ -14,6 +14,14 @@ public class PacienteService {
     @Autowired
     PacienteRepository pacienteRepository;
 
+    private boolean verificaId(Long id) {
+        if (pacienteRepository.existsById(id)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public List<Paciente> listarPacientes() {
         return pacienteRepository.findAll();
     }
@@ -28,14 +36,6 @@ public class PacienteService {
             return pacienteRepository.save(paciente);
         }
         return null;
-    }
-
-    private boolean verificaId(Long id) {
-        if (pacienteRepository.existsById(id)) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     public boolean deletarPaciente(Long id) {

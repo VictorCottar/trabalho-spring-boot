@@ -3,6 +3,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.Date;
 
@@ -13,11 +15,18 @@ public class Consulta extends Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer horaDaConsulta;
+    @NotNull
+    @Size(min = 5, max = 5)
+    private String horaDaConsulta;
 
+    @NotNull
     private String consulta;
 
-    public Consulta(String nome, String cpf, Long id, Integer horaDaConsulta, Integer idade, String consulta) {
+    public Consulta(){
+
+    }
+
+    public Consulta(String nome, String cpf, Long id, String horaDaConsulta, Integer idade, String consulta) {
         super(nome, cpf, idade);
         this.id = id;
         this.horaDaConsulta = horaDaConsulta;
@@ -34,11 +43,11 @@ public class Consulta extends Paciente {
         this.id = id;
     }
 
-    public Integer getHoraDaConsulta() {
+    public String getHoraDaConsulta() {
         return horaDaConsulta;
     }
 
-    public void setHoraDaConsulta(Integer horaDaConsulta) {
+    public void setHoraDaConsulta(String horaDaConsulta) {
         this.horaDaConsulta = horaDaConsulta;
     }
 

@@ -27,7 +27,7 @@ public class PacienteController {
         return pacienteService.criarPaciente(paciente);
     }
 
-    @PostMapping("/atualizar-paciente/{id}")
+    @PutMapping("/atualizar-paciente/{id}")
     public ResponseEntity<Paciente> atualizarPaciente(@RequestBody Paciente paciente, @PathVariable Long id) {
         if (pacienteService.atualizarPaciente(paciente, id) == null) {
             return (ResponseEntity<Paciente>) ResponseEntity.status(HttpStatus.NOT_FOUND);
@@ -50,9 +50,8 @@ public class PacienteController {
         return pacienteService.quantidadeDePacientes();
     }
 
-    //corrigir esta função.
     @GetMapping("/busca-por-id/{id}")
-    public Optional<Paciente> buscaPorId(Long id) {
+    public Optional<Paciente> buscaPorId(@PathVariable Long id) {
         return pacienteService.buscaPorId(id);
     }
 }
