@@ -1,5 +1,6 @@
 package com.example.trabalhoSpringBoot.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotNull;
 
@@ -8,6 +9,7 @@ public abstract class Pessoa {
 
     private String nome;
     @NotNull
+    @Column(nullable = false)
     private String cpf;
 
     public Pessoa() {

@@ -1,18 +1,11 @@
 package com.example.trabalhoSpringBoot.model;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 
 @Entity
 public class Consulta extends Paciente {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @NotNull
     @Size(min = 5, max = 5)
@@ -25,21 +18,10 @@ public class Consulta extends Paciente {
 
     }
 
-    public Consulta(String nome, String cpf, Long id, String horaDaConsulta, Integer idade, String consulta) {
+    public Consulta(String nome, String cpf, String horaDaConsulta, Integer idade, String consulta) {
         super(nome, cpf, idade);
-        this.id = id;
         this.horaDaConsulta = horaDaConsulta;
         this.consulta = consulta;
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getHoraDaConsulta() {
