@@ -19,17 +19,17 @@ public class PacienteController {
 
     @GetMapping
     public List<Paciente> listarPacientes() {
-        return pacienteService.listarPacientes();
+        return pacienteService.listar();
     }
 
     @PostMapping
     public Paciente criarPaciente(@RequestBody Paciente paciente) {
-        return pacienteService.criarPaciente(paciente);
+        return pacienteService.criar(paciente);
     }
 
     @PutMapping("/atualizar-paciente/{id}")
     public ResponseEntity<Paciente> atualizarPaciente(@RequestBody Paciente paciente, @PathVariable Long id) {
-        if (pacienteService.atualizarPaciente(paciente, id) == null) {
+        if (pacienteService.atualizar(paciente, id) == null) {
             return (ResponseEntity<Paciente>) ResponseEntity.status(HttpStatus.NOT_FOUND);
         } else {
             return ResponseEntity.ok(paciente);
@@ -38,7 +38,7 @@ public class PacienteController {
 
     @DeleteMapping("/deletar-paciente/{id}")
     public ResponseEntity<?> deletarPaciente(@PathVariable Long id) {
-        if (pacienteService.deletarPaciente(id)) {
+        if (pacienteService.deletar(id)) {
             String msg = "O PACIENTE " + pacienteService.getNomePaciente() + "DO ID " + id + " FOI DELETADO COM SUCESSO.";
             return ResponseEntity.status(HttpStatus.OK).body(msg);
         }

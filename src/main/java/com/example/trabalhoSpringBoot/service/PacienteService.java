@@ -9,37 +9,34 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PacienteService {
+public class PacienteService implements PessoaService<Paciente> {
 
     @Autowired
     PacienteRepository pacienteRepository;
 
-    private boolean verificaId(Long id) {
-        if (pacienteRepository.existsById(id)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public List<Paciente> listarPacientes() {
+    @Override
+    public List<Paciente> listar() {
         return pacienteRepository.findAll();
     }
 
-    public Paciente criarPaciente(Paciente paciente) {
+    @Override
+    public Paciente criar(Paciente paciente) {
         return pacienteRepository.save(paciente);
     }
 
-    public Paciente atualizarPaciente(Paciente paciente, Long id) {
-        if (verificaId(id)) {
+    @Override
+    public Paciente atualizar(Paciente paciente, Long id) {
+        if (pacienteRepository.existsById(id)) {
             paciente.setId(id);
             return pacienteRepository.save(paciente);
+        } else {
+            return null;
         }
-        return null;
     }
 
-    public boolean deletarPaciente(Long id) {
-        if (verificaId(id)) {
+    @Override
+    public boolean deletar(Long id) {
+        if (pacienteRepository.existsById(id)) {
             pacienteRepository.deleteById(id);
             return true;
         } else {
@@ -48,7 +45,7 @@ public class PacienteService {
     }
 
     public String getNomePaciente() {
-         return  pacienteRepository.getClass().getName();
+        return pacienteRepository.getClass().getName();
     }
 
     public int quantidadeDePacientes() {
@@ -58,5 +55,6 @@ public class PacienteService {
     public Optional<Paciente> buscaPorId(Long id) {
         return pacienteRepository.findById(id);
     }
+
 
 }
