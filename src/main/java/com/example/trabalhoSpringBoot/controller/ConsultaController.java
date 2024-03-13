@@ -20,17 +20,17 @@ public class ConsultaController {
 
     @GetMapping
     public List<Consulta> listarConsultas() {
-        return consultaService.listarConsultas();
+        return consultaService.listar();
     }
 
     @PostMapping
     public Consulta criarConsulta(@RequestBody Consulta consulta) {
-        return consultaService.criarConsulta(consulta);
+        return consultaService.criar(consulta);
     }
 
     @PutMapping("/atualizar-consulta/{id}")
     public ResponseEntity<Consulta> atualizarConsulta(@RequestBody Consulta consulta, @PathVariable Long id) {
-        if (consultaService.atualizarConsulta(consulta, id) == null) {
+        if (consultaService.atualizar(consulta, id) == null) {
             return (ResponseEntity<Consulta>) ResponseEntity.status(HttpStatus.NOT_FOUND);
         } else {
             return ResponseEntity.ok(consulta);
@@ -39,7 +39,7 @@ public class ConsultaController {
 
     @DeleteMapping("/deletar-consulta/{id}")
     public ResponseEntity<?> deletarConsulta(@PathVariable Long id) {
-        if (consultaService.deletarConsulta(id)) {
+        if (consultaService.deletar(id)) {
             String msg = "A CONSULTA DO ID " + id + " FOI DELETADA COM SUCESSO";
             return ResponseEntity.status(HttpStatus.OK).body(msg);
         }

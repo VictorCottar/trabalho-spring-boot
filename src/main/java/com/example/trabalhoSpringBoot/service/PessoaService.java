@@ -10,4 +10,6 @@ public interface PessoaService <T extends Pessoa>{
     T criar(T t);
     T atualizar(T t, Long id);
     boolean deletar(Long id);
+
+    //implementar os metodos abstratos nas services
 }

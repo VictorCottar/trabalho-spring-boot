@@ -9,37 +9,35 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ConsultaService {
+public class ConsultaService  implements PessoaService<Consulta>{
 
     @Autowired
     ConsultaRepository consultaRepository;
 
-    private boolean verificaId(Long id) {
-        if (consultaRepository.existsById(id)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    public List<Consulta> listarConsultas() {
+    @Override
+    public List<Consulta> listar() {
         return consultaRepository.findAll();
     }
 
-    public Consulta criarConsulta(Consulta consulta) {
+    @Override
+    public Consulta criar(Consulta consulta) {
         return consultaRepository.save(consulta);
     }
 
-    public Consulta atualizarConsulta(Consulta consulta, Long id) {
-        if (verificaId(id)) {
+    @Override
+    public Consulta atualizar(Consulta consulta, Long id) {
+        if (consultaRepository.existsById(id)) {
             consulta.setId(id);
             return consultaRepository.save(consulta);
+        } else {
+            return null;
         }
-        return null;
     }
 
-    public boolean deletarConsulta(Long id) {
-        if (verificaId(id)) {
+    @Override
+    public boolean deletar(Long id) {
+        if (consultaRepository.existsById(id)) {
             consultaRepository.deleteById(id);
             return true;
         } else {
@@ -54,4 +52,5 @@ public class ConsultaService {
     public Optional<Consulta> buscaPorId(Long id) {
         return consultaRepository.findById(id);
     }
+
 }
