@@ -35,18 +35,23 @@ public class PacienteService implements PessoaService<Paciente> {
     }
 
     @Override
-    public boolean deletar(Long id) {
+    public String deletar(Long id) {
         if (pacienteRepository.existsById(id)) {
-            pacienteRepository.deleteById(id);
-            return true;
+            Optional<String> nomePacienteOpt = getNomePaciente(id);
+            if (nomePacienteOpt.isPresent()) {
+                pacienteRepository.deleteById(id);
+                return nomePacienteOpt.get();
+            }
         } else {
-            return false;
+            return null;
         }
+        return null;
     }
 
-    public String getNomePaciente() {
-        return pacienteRepository.getClass().getName();
+    public Optional<String> getNomePaciente(Long id) {
+        return pacienteRepository.findById(id).map(Paciente::getNome);
     }
+
 
     public int quantidadeDePacientes() {
         return pacienteRepository.findAll().size();

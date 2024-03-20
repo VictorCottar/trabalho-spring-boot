@@ -21,8 +21,9 @@ public class Paciente extends Pessoa{
     public Paciente() {
     }
 
-    public Paciente(String nome, String cpf, Integer idade) {
-        super(nome, cpf);
+    public Paciente(String nome, String genero, String cpf, Long id, Integer idade) {
+        super(nome, genero, cpf);
+        this.id = id;
         this.idade = idade;
     }
 

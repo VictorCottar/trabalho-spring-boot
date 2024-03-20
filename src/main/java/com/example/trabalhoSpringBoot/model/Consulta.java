@@ -18,8 +18,8 @@ public class Consulta extends Paciente {
 
     }
 
-    public Consulta(String nome, String cpf, String horaDaConsulta, Integer idade, String consulta) {
-        super(nome, cpf, idade);
+    public Consulta(String nome, String genero, String cpf, Long id, Integer idade, String horaDaConsulta, String consulta) {
+        super(nome, genero, cpf, id, idade);
         this.horaDaConsulta = horaDaConsulta;
         this.consulta = consulta;
     }

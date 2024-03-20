@@ -38,8 +38,9 @@ public class PacienteController {
 
     @DeleteMapping("/deletar-paciente/{id}")
     public ResponseEntity<?> deletarPaciente(@PathVariable Long id) {
-        if (pacienteService.deletar(id)) {
-            String msg = "O PACIENTE " + pacienteService.getNomePaciente() + "DO ID " + id + " FOI DELETADO COM SUCESSO.";
+        String nomePaciente = pacienteService.deletar(id);
+        if (nomePaciente != null) {
+            String msg = "O PACIENTE " + nomePaciente + " DO ID " + id + " FOI DELETADO COM SUCESSO.";
             return ResponseEntity.status(HttpStatus.OK).body(msg);
         }
         return null;

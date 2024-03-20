@@ -39,8 +39,9 @@ public class ConsultaController {
 
     @DeleteMapping("/deletar-consulta/{id}")
     public ResponseEntity<?> deletarConsulta(@PathVariable Long id) {
-        if (consultaService.deletar(id)) {
-            String msg = "A CONSULTA DO ID " + id + " FOI DELETADA COM SUCESSO";
+        String nomeConsulta = consultaService.deletar(id);
+        if (nomeConsulta != null) {
+            String msg = "A CONSULTA DO PACIENTE " + nomeConsulta + ", FOI DELETADA COM SUCESSO. ID DELETADO: " + id;
             return ResponseEntity.status(HttpStatus.OK).body(msg);
         }
         return null;

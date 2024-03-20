@@ -9,7 +9,6 @@ public interface PessoaService <T extends Pessoa>{
     List<T> listar();
     T criar(T t);
     T atualizar(T t, Long id);
-    boolean deletar(Long id);
+    String deletar(Long id);
 
-    //implementar os metodos abstratos nas services
 }
