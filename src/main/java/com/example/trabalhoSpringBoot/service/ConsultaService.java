@@ -1,7 +1,6 @@
 package com.example.trabalhoSpringBoot.service;
 
 import com.example.trabalhoSpringBoot.model.Consulta;
-import com.example.trabalhoSpringBoot.model.Paciente;
 import com.example.trabalhoSpringBoot.repository.ConsultaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +35,6 @@ public class ConsultaService implements PessoaService<Consulta> {
         }
     }
 
-
     @Override
     public String deletar(Long id) {
         if (consultaRepository.existsById(id)) {
@@ -63,4 +61,17 @@ public class ConsultaService implements PessoaService<Consulta> {
         return consultaRepository.findById(id);
     }
 
+    public String horarioConsulta(Long id) {
+        if (consultaRepository.existsById(id)) {
+            Optional<String> horarioConsultaOpt = getHoraConsulta(id);
+            if (horarioConsultaOpt.isPresent()) {
+                return horarioConsultaOpt.get();
+            }
+        }
+        return null;
+    }
+
+    public Optional<String> getHoraConsulta(Long id){
+        return consultaRepository.findById(id).map(Consulta::getHoraDaConsulta);
+    }
 }

@@ -56,4 +56,14 @@ public class ConsultaController {
     public Optional<Consulta> buscaPorId(@PathVariable Long id) {
         return consultaService.buscaPorId(id);
     }
+
+    @GetMapping("/horario-consulta/{id}")
+    public ResponseEntity<?> horarioConsulta(@PathVariable Long id) {
+        String horarioConsulta = consultaService.horarioConsulta(id);
+        if (horarioConsulta != null) {
+            String msg = "O HORÁRIO DA CONSULTA COM O ID " + id + " É: " + horarioConsulta;
+            return ResponseEntity.status(HttpStatus.OK).body(msg);
+        }
+        return null;
+    }
 }

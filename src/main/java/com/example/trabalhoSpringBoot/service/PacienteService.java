@@ -60,6 +60,4 @@ public class PacienteService implements PessoaService<Paciente> {
     public Optional<Paciente> buscaPorId(Long id) {
         return pacienteRepository.findById(id);
     }
-
-
 }
