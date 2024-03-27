@@ -55,4 +55,14 @@ public class PacienteController {
     public Optional<Paciente> buscaPorId(@PathVariable Long id) {
         return pacienteService.buscaPorId(id);
     }
+
+    @GetMapping("/maior-idade/{x}")
+    public List<Paciente> maiorIdade(@PathVariable double x) {
+        return pacienteService.maiorIdade(x);
+    }
+
+    @GetMapping("/busca-por-nome/{nome}")
+    public List<Paciente> buscaPorNome(@PathVariable String nome) {
+        return pacienteService.buscaPorNome(nome);
+    }
 }

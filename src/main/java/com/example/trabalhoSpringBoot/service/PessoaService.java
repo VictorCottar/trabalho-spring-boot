@@ -5,7 +5,7 @@ import com.example.trabalhoSpringBoot.model.Pessoa;
 import java.util.List;
 import java.util.Optional;
 
-public interface PessoaService <T extends Pessoa>{
+public interface PessoaService <T extends Pessoa> {
 
     List<T> listar();
     T criar(T t);

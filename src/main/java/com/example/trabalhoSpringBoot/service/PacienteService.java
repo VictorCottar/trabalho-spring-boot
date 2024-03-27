@@ -5,7 +5,9 @@ import com.example.trabalhoSpringBoot.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -52,12 +54,27 @@ public class PacienteService implements PessoaService<Paciente> {
         return pacienteRepository.findById(id).map(Paciente::getNome);
     }
 
-
     public int quantidadeDePacientes() {
         return pacienteRepository.findAll().size();
     }
 
     public Optional<Paciente> buscaPorId(Long id) {
         return pacienteRepository.findById(id);
+    }
+
+    public List<Paciente> maiorIdade(double x) {
+        List<Paciente> listaDePacientes = listar();
+        List<Paciente> listaDePacientesMaiorIdade = new ArrayList<>();
+
+        for (Paciente paciente: listaDePacientes) {
+            if (paciente.getIdade() > x) {
+                listaDePacientesMaiorIdade.add(paciente);
+            }
+        }
+        return listaDePacientesMaiorIdade;
+    }
+
+    public List<Paciente> buscaPorNome(String nome) {
+        return pacienteRepository.findByNome(nome);
     }
 }
